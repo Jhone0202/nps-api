@@ -26,9 +26,16 @@ class UserController {
 
         await usersRepository.save(user);
 
-        return res.json(user);
+        return res.status(201).json(user);
     }
 
+    async show(req: Request, res: Response) {
+        const usersRepository = getCustomRepository(UsersRepository);
+
+        const all = await usersRepository.find();
+
+        return res.json(all);
+    }
 }
 
 export { UserController };
